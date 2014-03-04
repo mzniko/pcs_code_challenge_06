@@ -13,5 +13,5 @@ get '/' do
 end
 
 post '/' do
-  # "Caught a post"
+  "Caught a post"
 end
