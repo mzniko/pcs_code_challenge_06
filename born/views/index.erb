@@ -10,10 +10,10 @@
   </div>
   <div class="form">
     <form action="/thanks" method="post">
-      <input type="text" id="name" value="What everybody calls you"/>
-      <input type="email" id="mail" value="Your@email.com"/>
-      <input type="text" id="twitter" value="@Twitter"/>
-      <input type="text" id="phone" value="Phone"/>
+      <input type="text" id="name" name="post[name]" value="What everybody calls you"/>
+      <input type="email" id="mail" name="post[email]" value="Your@email.com"/>
+      <input type="text" id="twitter" name="post[twitter]" value="@Twitter"/>
+      <input type="text" id="phone" name="post[phone]" value="Phone"/>
       <div class="button">
         <button type="submit">Press the button!</button>
       </div>
