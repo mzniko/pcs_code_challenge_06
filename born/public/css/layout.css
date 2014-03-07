@@ -26,6 +26,7 @@ body {
   background-color: MediumSeaGreen;
   display: inline-block;
   width: 100%;
+  margin-top: 20px;
 }
 
 #pageheader {
@@ -86,5 +87,5 @@ body {
   position: relative;
   bottom: 0;
   text-align: center;
-  top-margin: 10px;
+  margin: 20px;
 }
