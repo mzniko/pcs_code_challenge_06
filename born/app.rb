@@ -6,6 +6,6 @@ get '/' do
 end
 
 post '/thanks' do
-  @name = params[:post]["name"]
+  @name = params[:name]
   erb :thanks, locals: {nm: @name}
 end
