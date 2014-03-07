@@ -68,3 +68,14 @@ body {
   margin-left: 100px;
   margin-top: -50px;
 }
+
+#suckerstable {
+  width: 100%;
+  text-align: left;
+  border: .2em solid black;
+}
+
+#suckerstable #tb_headers {
+  background-color: grey;
+  color: black;
+}
