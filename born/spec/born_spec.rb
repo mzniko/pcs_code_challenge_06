@@ -27,8 +27,8 @@ describe 'thanks' do
   # end
 
   it 'should reflect the correct name on form submission' do
-    post '/thanks', 'name' => 'pedobear'#, 'mail' => 'pedo@bearmail.com',
-         #'twitter' => '@pedobear', 'phone' => '123-456-7899'
+    post '/thanks', 'name' => 'pedobear'# , 'mail' => 'pedo@bearmail.com',
+         # 'twitter' => '@pedobear', 'phone' => '123-456-7899'
     assert last_response.body.include?('pedobear')
   end
 end
@@ -46,4 +46,3 @@ describe 'suckers' do
     assert last_response.body.include?('pedo@bearmail.com')
   end
 end
-

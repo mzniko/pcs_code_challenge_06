@@ -13,15 +13,15 @@ end
 
 post '/thanks' do
   @name = params[:name]
-  erb :thanks, locals: {nm: @name}
+  erb :thanks, locals: { nm: @name }
 end
 
 get '/suckers' do
-  erb :suckers, locals: {info: @info}
+  erb :suckers, locals: { info: @info }
 end
 
 get '/suckers/:num' do |number|
   deets = @info[number.to_i]
-  #binding.pry
-  erb :suckers_detail, locals: {info: deets}
+  # binding.pry
+  erb :suckers_detail, locals: { info: deets }
 end
