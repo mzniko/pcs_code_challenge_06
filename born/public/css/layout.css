@@ -23,10 +23,42 @@ body {
 
 .form {
   background-color: MediumSeaGreen;
+  display: inline-block;
+  width: 100%;
 }
 
-#comingsoon {
+#pageheader {
   font-size: 56px;
+}
+
+#name {
+  display: inherit;
+  width: 90%;
+  margin: 2% 5%;
+}
+
+#mail {
+  display: inherit;
+  margin: 2% 5%;
+  width: 45%;
+}
+
+#twitter {
+  display: inherit;
+  margin: 2% 5%;
+  width: 45%;
+}
+
+#phone {
+  margin: 2% 5%;
+  display: inherit;
+  width: 45%;
+}
+
+.button {
+  display: inherit;
+  float: right;
+  margin: -5% 10% 0% 0%;
 }
 
 .logo {
