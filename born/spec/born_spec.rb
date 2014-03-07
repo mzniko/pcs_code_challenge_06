@@ -30,7 +30,20 @@ describe 'thanks' do
     post '/thanks', 'name' => 'pedobear'#, 'mail' => 'pedo@bearmail.com',
          #'twitter' => '@pedobear', 'phone' => '123-456-7899'
     assert last_response.body.include?('pedobear')
+  end
+end
 
+describe 'suckers' do
+  it 'should pull up the suckers page after a form submission' do
+    post '/suckers'
+    assert last_response.ok?
+  end
+
+  it 'should reflect the correct name and email of submitters' do
+    post '/suckers', 'name' => 'pedobear', 'mail' => 'pedo@bearmail.com'
+         #'twitter' => '@pedobear', 'phone' => '123-456-7899'
+    assert last_response.body.include?('pedobear')
+    assert last_response.body.include?('pedo@bearmail.com')
   end
 end
 
