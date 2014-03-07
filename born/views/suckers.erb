@@ -5,11 +5,18 @@
     <br>
     <table id="suckerstable">
       <tr>
-          <th id="tb_headers">Name</th>
-          <th id="tb_headers">Email</th>
+        <th id="tb_headers">Name</th>
+        <th id="tb_headers">Email</th>
       </tr>
 
-    </table>
+      <% info.each do |key, value| %>
+          <tr>
+          <% value.each do |item| %>
+            <td><%= item %></td>
+          <% end %>
+          </tr>
+      <% end %>
 
+    </table>
   </div>
 

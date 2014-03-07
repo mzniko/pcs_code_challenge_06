@@ -11,5 +11,8 @@ post '/thanks' do
 end
 
 get '/suckers' do
-  erb :suckers
+  @info = {}
+  @info[:one] = ['pedobear', 'pedo@bearmail.com']
+  @info[:two] = ['pedo2', 'pedo@bearmail.com']
+  erb :suckers, locals: {info: @info}
 end
