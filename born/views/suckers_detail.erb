@@ -1,0 +1,23 @@
+  <div class="suckers">
+    <h1 id="pageheader">Suckers</h1>
+    <a href='/suckers'>Return to listing</a>
+    <br><br>
+    <table id="suckerstable">
+      <tr>
+        <th id="tb_headers">Name</th>
+        <th id="tb_headers">Email</th>
+        <th id="tb_headers">Twitter</th>
+        <th id="tb_headers">Phone</th>
+      </tr>
+
+      <tr>
+      <% info.each do |value| %>
+
+        <td><%= value %></td>
+
+      <% end %>
+      </tr>
+
+    </table>
+  </div>
+

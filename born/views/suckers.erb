@@ -11,8 +11,8 @@
 
       <% info.each do |key, value| %>
           <tr>
-          <% value.each do |item| %>
-            <td><%= item %></td>
+          <% value[0..1].each do |item| %>
+            <td><a href="/suckers/<%= key %>"><%= item %></a></td>
           <% end %>
           </tr>
       <% end %>

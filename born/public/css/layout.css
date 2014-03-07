@@ -8,7 +8,8 @@ body {
 .main {
   max-width: 800px;
   margin: auto;
-  padding-left: 80px;
+  padding-left: 40px;
+  height: 100%;
 }
 
 .left-column {
@@ -73,9 +74,17 @@ body {
   width: 100%;
   text-align: left;
   border: .2em solid black;
+  margin: 10px;
 }
 
 #suckerstable #tb_headers {
   background-color: grey;
   color: black;
+}
+
+.footer {
+  position: relative;
+  bottom: 0;
+  text-align: center;
+  top-margin: 10px;
 }
