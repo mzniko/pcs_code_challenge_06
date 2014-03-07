@@ -9,7 +9,7 @@
         <th id="tb_headers">Email</th>
       </tr>
 
-      <% info.each do |key, value| %>
+      <% @suckers.each_with_index do |value, key| %>
           <tr>
           <% value[0..1].each do |item| %>
             <td><a href="/suckers/<%= key %>"><%= item %></a></td>

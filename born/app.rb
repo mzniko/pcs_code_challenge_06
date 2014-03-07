@@ -2,9 +2,9 @@ require 'sinatra'
 require 'pry'
 
 before do
-  @info = {}
-  @info[1] = ['pedobear', 'pedo@bearmail.com', '@twitter', '123-456-7890']
-  @info[2] = ['pedo2', 'pedo@bearmail.com', '@twitter', '123-456-7890']
+  @suckers = []
+  @suckers << ['pedobear', 'pedo@bearmail.com', '@twitter', '123-456-7890']
+  @suckers << ['pedo2', 'pedo@bearmail.com', '@twitter', '123-456-7890']
 end
 
 get '/' do
@@ -17,11 +17,11 @@ post '/thanks' do
 end
 
 get '/suckers' do
-  erb :suckers, locals: { info: @info }
+  erb :suckers
 end
 
 get '/suckers/:num' do |number|
-  deets = @info[number.to_i]
+  deets = @suckers[number.to_i]
   # binding.pry
   erb :suckers_detail, locals: { info: deets }
 end
