@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'pry'
+require 'csv'
 
 before do
   @suckers = []
@@ -11,9 +12,14 @@ get '/' do
   erb :index
 end
 
-post '/thanks' do
+post '/' do
+  CSV.open("people.csv", 'a' ) do |f|
+    f.write params[:suckers_input]
+  end
+  redirect to('/thanks.erb')
   @name = params[:name]
   erb :thanks, locals: { nm: @name }
+
 end
 
 get '/suckers' do
