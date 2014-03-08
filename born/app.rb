@@ -2,24 +2,35 @@ require 'sinatra'
 require 'pry'
 require 'csv'
 
-before do
-  @suckers = []
-  @suckers << ['pedobear', 'pedo@bearmail.com', '@twitter', '123-456-7890']
-  @suckers << ['pedo2', 'pedo@bearmail.com', '@twitter', '123-456-7890']
-end
+# before do
+#   @suckers = []
+#   @suckers << ['pedobear', 'pedo@bearmail.com', '@twitter', '123-456-7890']
+#   @suckers << ['pedo2', 'pedo@bearmail.com', '@twitter', '123-456-7890']
+# end
+
 
 get '/' do
   erb :index
 end
 
-post '/' do
+post '/suckers' do
+  s = Sucker.new
+  s.name = params[:name]
+  s.phone = params[:phone]
+  s.twitter = params[:twitter]
+  s.email = params[:email]
   CSV.open("people.csv", 'a' ) do |f|
-    f.write params[:suckers_input]
+    f.write s.csvstring
   end
-  redirect to('/thanks.erb')
-  @name = params[:name]
-  erb :thanks, locals: { nm: @name }
+  redirect to('/thanks')
 
+end
+
+get '/thanks' do
+  s = get_last_sucker
+  @name = s.name
+
+  erb :thanks, locals: { nm: @name }
 end
 
 get '/suckers' do
