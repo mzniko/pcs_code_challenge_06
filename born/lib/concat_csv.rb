@@ -6,13 +6,13 @@ class ConcatCsv
 
   def name_concat
     name = @csv_line_array.shift(5)
-    name.reject {|i| i.empty?}.join(" ")
+    name.reject { |i| i.empty? }.join(" ")
   end
 
   def phone_concat
     phone_array = @csv_line_array.shift(4)
-    phone_string = phone_array.reject {|i| i.empty?}.join("-")
-    phone_string << " " + @csv_line_array.shift
+    phone_string = phone_array.reject { |i| i.empty? }.join("-")
+    phone_string << ' ' + @csv_line_array.shift
     phone_string
   end
 

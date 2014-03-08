@@ -1,13 +1,15 @@
 require 'sinatra'
 require 'pry'
 require 'csv'
+require_relative 'suckersinput.rb'
+
+enable :sessions
 
 # before do
 #   @suckers = []
 #   @suckers << ['pedobear', 'pedo@bearmail.com', '@twitter', '123-456-7890']
 #   @suckers << ['pedo2', 'pedo@bearmail.com', '@twitter', '123-456-7890']
 # end
-
 
 get '/' do
   erb :index
@@ -19,17 +21,16 @@ post '/suckers' do
   s.phone = params[:phone]
   s.twitter = params[:twitter]
   s.email = params[:email]
-  CSV.open("people.csv", 'a' ) do |f|
-    f.write s.csvstring
+  CSV.open('people.csv', 'a') do |f|
+    f << s.csvstring
   end
+  session[:name] = params[:name]
   redirect to('/thanks')
-
 end
 
 get '/thanks' do
-  s = get_last_sucker
-  @name = s.name
-
+  # s = get_last_sucker
+  @name = session[:name]
   erb :thanks, locals: { nm: @name }
 end
 
