@@ -41,7 +41,6 @@ describe 'suckers' do
 
   it 'should reflect the correct name and email of submitters' do
     get '/suckers'
-
     assert last_response.body.include?('pedobear')
     assert last_response.body.include?('pedo@bearmail.com')
   end
