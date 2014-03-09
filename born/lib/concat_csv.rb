@@ -1,5 +1,5 @@
 # concatanates a csv line into a suckers array
-class ConcatCsv
+class ConcatCsv < Array
   def initialize(csv_line_array)
     @csv_line_array = csv_line_array
   end

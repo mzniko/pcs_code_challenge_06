@@ -2,14 +2,14 @@ require 'sinatra'
 require 'pry'
 require 'csv'
 require_relative 'suckersinput.rb'
+require_relative 'persistance.rb'
 
 enable :sessions
 
-# before do
-#   @suckers = []
-#   @suckers << ['pedobear', 'pedo@bearmail.com', '@twitter', '123-456-7890']
-#   @suckers << ['pedo2', 'pedo@bearmail.com', '@twitter', '123-456-7890']
-# end
+before do
+  suckers = SuckerList.new
+  @suckers = suckers.suckers_display.to_a
+end
 
 get '/' do
   erb :index
@@ -35,11 +35,12 @@ get '/thanks' do
 end
 
 get '/suckers' do
-  erb :suckers
+  session[:suckers_array] = @suckers
+  erb :suckers, locals: {suck: @suckers}
 end
 
 get '/suckers/:num' do |number|
-  deets = @suckers[number.to_i]
+  deets = SuckerList.new.goto(number.to_i)
   # binding.pry
   erb :suckers_detail, locals: { info: deets }
 end
