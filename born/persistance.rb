@@ -22,7 +22,7 @@ class SuckerEntity
 end
 
 DataMapper.finalize
-DataMapper.auto_upgrade!
+#DataMapper.auto_upgrade!
 
   # def suckers_display
   #   display = []
