@@ -6,11 +6,6 @@ require_relative 'persistance.rb'
 
 enable :sessions
 
-before do
-  suckers = SuckerList.new
-  @suckers = suckers.suckers_display.to_a
-end
-
 get '/' do
   erb :index
 end
@@ -35,8 +30,10 @@ get '/thanks' do
 end
 
 get '/suckers' do
+  suckers = SuckerList.new
+  @suckers = suckers.suckers_display.to_a
   session[:suckers_array] = @suckers
-  erb :suckers, locals: {suck: @suckers}
+  erb :suckers, locals: { suck: @suckers }
 end
 
 get '/suckers/:num' do |number|

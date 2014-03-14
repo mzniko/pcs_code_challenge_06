@@ -1,6 +1,6 @@
 require 'pry'
 
-class Sucker #managing transfer of customer info from index form to 
+class Sucker # managing transfer of customer info from index form to
   def initialize
     @suffixes = %w(Jr. Sr. II III IV PhD.)
     @prefixes = %w(M. Mrs. Mr. Dr. Ms. Sister Lady Miss)
