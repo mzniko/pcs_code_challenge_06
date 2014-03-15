@@ -8,7 +8,7 @@ require_relative 'persistance.rb'
 enable :sessions
 
 configure do
-  DataMapper.setup(:default, "sqlite3:///suckers.sqlite3")
+  DataMapper.setup(:default, "sqlite3://#{Dir.pwd}/suckers.sqlite3")
 end
 
 class SuckerEntity
@@ -31,6 +31,7 @@ class SuckerEntity
 end
 
 DataMapper.finalize
+DataMapper.auto_upgrade!
 
 get '/' do
   erb :index
@@ -53,8 +54,8 @@ post '/suckers' do
                                 phone_prefix: s.phone[2],
                                 line: s.phone[3],
                                 extension: s.phone[4],
-                                twitter: s.twitter,
-                                email: s.email,
+                                twitter: s.twitter[0],
+                                email: s.email[0],
                                 created_at: Time.now)
 
   session[:name] = params[:name]

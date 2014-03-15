@@ -27,7 +27,7 @@ class SuckerParse # managing transfer of customer info from index form to
   end
 
   def email
-    @email.values
+    @email
   end
 
   def twitter=(twit_string)
@@ -37,7 +37,7 @@ class SuckerParse # managing transfer of customer info from index form to
   end
 
   def twitter
-    @twitter.values
+    @twitter
   end
 
   def phone=(phone_string)
