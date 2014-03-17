@@ -1,4 +1,4 @@
- require 'rubygems'
+require 'rubygems'
 require 'sinatra'
 require 'pry'
 require 'data_mapper'
@@ -70,13 +70,13 @@ end
 
 get '/suckers' do
   @suckers = SuckerEntity.all.reverse
-  binding.pry
   session[:suckers_array] = ConcatSQL.concat_entities(@suckers)
-  erb :suckers, locals: { suck: @suckers }
+  erb :suckers, locals: { suck: session[:suckers_array] }
 end
 
 get '/suckers/:num' do |number|
-  deets = SuckerList.new.goto(number.to_i)
-  # binding.pry
+  deets = SuckerEntity.get(number.to_i + 1)
+  deets = ConcatSQL.concat_entity(deets)
+  binding.pry
   erb :suckers_detail, locals: { info: deets }
 end
