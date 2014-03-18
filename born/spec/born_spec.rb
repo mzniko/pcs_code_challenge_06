@@ -2,7 +2,7 @@ require 'minitest/autorun'
 require_relative 'spec_helper'
 require 'pry'
 
-describe 'index' do
+describe 'index' do #view test
   it 'should render the index' do
     get '/'
     assert last_response.ok?
@@ -14,9 +14,9 @@ describe 'index' do
   end
 end
 
-describe 'thanks' do
+describe 'thanks' do #view test
   it 'should pull up the thanks page after a form submission' do
-    post '/thanks'
+    post '/suckers'
     assert last_response.ok?
   end
 
@@ -26,20 +26,20 @@ describe 'thanks' do
   #   assert request.form_data?
   # end
 
-  it 'should reflect the correct name on form submission' do
-    post '/thanks', 'name' => 'pedobear'# , 'mail' => 'pedo@bearmail.com',
+  it 'should reflect the correct name on form submission' do #view
+    post '/suckers', 'name' => 'pedobear'# , 'mail' => 'pedo@bearmail.com',
          # 'twitter' => '@pedobear', 'phone' => '123-456-7899'
     assert last_response.body.include?('pedobear')
   end
 end
 
-describe 'suckers' do
+describe 'suckers' do #view/function
   it 'should pull up the suckers page after a form submission' do
     get '/suckers'
     assert last_response.ok?
   end
 
-  it 'should reflect the correct name and email of submitters' do
+  it 'should reflect the correct name and email of submitters' do 
     get '/suckers'
     assert last_response.body.include?('pedobear')
     assert last_response.body.include?('pedo@bearmail.com')
