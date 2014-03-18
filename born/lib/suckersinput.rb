@@ -1,6 +1,7 @@
-require 'pry'
+# manages transfer of customer info from index form to db
+class SuckerParse
+  attr_reader :email, :twitter
 
-class SuckerParse # managing transfer of customer info from index form to
   def initialize
     @suffixes = %w(Jr. Sr. II III IV PhD.)
     @prefixes = %w(M. Mrs. Mr. Dr. Ms. Sister Lady Miss)
@@ -23,11 +24,7 @@ class SuckerParse # managing transfer of customer info from index form to
 
   def email=(email_string)
     @email = []
-    @email.push(email_string.match(/\S+@\S+\.\S+/) ? email_string : 'not found')
-  end
-
-  def email
-    @email
+    @email.push(email_string.match(/\S+@\S+\.\S+/) ? email_string : 'Not Found')
   end
 
   def twitter=(twit_string)
@@ -36,12 +33,12 @@ class SuckerParse # managing transfer of customer info from index form to
     @twitter << twit_string.gsub(/@/, '')
   end
 
-  def twitter
-    @twitter
-  end
-
   def phone=(phone_string)
-    @parsed_phone = { country: '', area: '', prefix: '', line: '', extension: '' }
+    @parsed_phone = { country: '',
+                      area: '',
+                      prefix: '',
+                      line: '',
+                      extension: '' }
 
     phone_string.gsub!(/\W/, ' ')
     phone = phone_string.split
@@ -57,7 +54,6 @@ class SuckerParse # managing transfer of customer info from index form to
   end
 
   def csvstring
-    # binding.pry
     @input = @parsed_name.values << @parsed_phone.values << @twitter << @email
     @input.flatten
   end
@@ -69,10 +65,3 @@ class SuckerParse # managing transfer of customer info from index form to
     @prefixes = %w(M. Mrs. Mr. Dr. Ms. Sister Lady Miss)
   end
 end
-
-# def get_last_sucker
-#   CSV.open('people.csv', 'r').read do |line|
-#     @last_sucker = csv.find {|line| line[-1] }
-#   end
-#   @last_sucker.name
-# end

@@ -1,7 +1,10 @@
-require 'pry'
 require 'data_mapper'
 
-# makes suckers happen
+configure do
+  DataMapper.setup(:default, "sqlite3://#{Dir.pwd}/suckers.sqlite3")
+end
+
+# defines Sucker entities for sqlite3
 class SuckerEntity
   include DataMapper::Resource
 
@@ -22,18 +25,4 @@ class SuckerEntity
 end
 
 DataMapper.finalize
-#DataMapper.auto_upgrade!
-
-  # def suckers_display
-  #   display = []
-  #   CSV.foreach('people.csv') do |line|
-  #     new_sucker = ConcatCsv.new(line).combine
-  #     display << new_sucker
-  #   end
-  #   display
-  # end
-
-  # def goto(line)
-  #   csv_line = CSV.readlines('people.csv')[line]
-  #   ConcatCsv.new(csv_line).combine
-  # end
+DataMapper.auto_upgrade!
