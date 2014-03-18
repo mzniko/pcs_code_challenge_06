@@ -3,7 +3,7 @@ module ConcatSQL
   def self.concat_entities(sucker_entities)
     suckers_arrays = []
     sucker_entities.each do |sucker|
-      arry << ConcatSQL.combine(sucker.attributes.values[1..12])
+      suckers_arrays << ConcatSQL.combine(sucker.attributes.values[1..12])
     end
     suckers_arrays
   end
