@@ -4,6 +4,7 @@ require 'pry'
 require 'data_mapper'
 require_relative 'suckersinput.rb'
 require_relative 'persistance.rb'
+require_relative 'lib/concat_sql.rb'
 
 enable :sessions
 
@@ -57,7 +58,6 @@ post '/suckers' do
                                 twitter: s.twitter[0],
                                 email: s.email[0],
                                 created_at: Time.now)
-
   session[:name] = params[:name]
   redirect to('/thanks')
 end
@@ -69,14 +69,14 @@ get '/thanks' do
 end
 
 get '/suckers' do
-  @suckers = SuckerEntity.all
-  binding.pry
-  session[:suckers_array] = @suckers
-  erb :suckers, locals: { suck: @suckers }
+  @suckers = SuckerEntity.all.reverse
+  session[:suckers_array] = ConcatSQL.concat_entities(@suckers)
+  erb :suckers, locals: { suck: session[:suckers_array] }
 end
 
 get '/suckers/:num' do |number|
-  deets = SuckerList.new.goto(number.to_i)
-  # binding.pry
+  deets = SuckerEntity.get(number.to_i + 1)
+  deets = ConcatSQL.concat_entity(deets)
+  binding.pry
   erb :suckers_detail, locals: { info: deets }
 end
