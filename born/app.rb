@@ -3,9 +3,9 @@ require 'rubygems'
 require 'sinatra'
 require 'pry'
 require 'data_mapper'
-require 'suckersinput.rb'
-require 'persistance.rb'
-require 'concat_sql.rb'
+require 'suckersinput'
+require 'persistance'
+require 'concat_sql'
 
 enable :sessions
 
@@ -40,13 +40,13 @@ end
 
 get '/thanks' do
   # s = get_last_sucker
-  @name = session[:name]
-  erb :thanks, locals: { nm: @name }
+  name = session[:name]
+  erb :thanks, locals: { nm: name }
 end
 
 get '/suckers' do
-  @suckers = SuckerEntity.all.reverse
-  session[:suckers_array] = ConcatSQL.concat_entities(@suckers)
+  suckers = SuckerEntity.all.reverse
+  session[:suckers_array] = ConcatSQL.concat_entities(suckers)
   erb :suckers, locals: { suck: session[:suckers_array] }
 end
 

@@ -26,3 +26,19 @@ end
 
 DataMapper.finalize
 DataMapper.auto_upgrade!
+
+# database utilities
+module DButils
+  def self.merge_csv
+    # for each row in the file, make an object and store it in the database.
+    suckers = CSV.foreach('people.csv', headers:true) do |row|
+      s = Sucker.new(row) # this is all it takes because we use the headers.
+      s.save
+
+      # indicate progress
+      print "#{reset}records: #{record_count}"
+      $stdout.flush
+      record_count +=1
+    end
+  end
+end
