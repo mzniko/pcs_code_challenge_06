@@ -1,6 +1,6 @@
 # manages transfer of customer info from index form to db
 class SuckerParse
-  attr_reader :email, :twitter
+  attr_reader :email, :twitter, :suffixes, :prefixes
 
   def initialize
     @suffixes = %w(Jr. Sr. II III IV PhD.)
@@ -34,19 +34,16 @@ class SuckerParse
   end
 
   def phone=(phone_string)
-    @parsed_phone = { country: '',
-                      area: '',
-                      prefix: '',
-                      line: '',
-                      extension: '' }
+    @parsed_phone = { country: '', area: '', prefix: '',
+                      line: '', extension: '' }
 
     phone_string.gsub!(/\W/, ' ')
     phone = phone_string.split
     @parsed_phone[:extension] = phone.pop.sub(/x/, '') if phone_string.match(/x/)
-    @parsed_phone[:line] = phone.pop
-    @parsed_phone[:prefix] = phone.pop
-    @parsed_phone[:area] = phone.pop
-    @parsed_phone[:country] = phone.pop if phone.count > 0
+    @parsed_phone[:line] = phone.pop unless phone.empty?
+    @parsed_phone[:prefix] = phone.pop unless phone.empty?
+    @parsed_phone[:area] = phone.pop unless phone.empty?
+    @parsed_phone[:country] = phone.pop unless phone.empty?
   end
 
   def phone
@@ -56,12 +53,5 @@ class SuckerParse
   def csvstring
     @input = @parsed_name.values << @parsed_phone.values << @twitter << @email
     @input.flatten
-  end
-
-  def self.getsuffixes
-    @suffixes = %w(Jr. Sr. II III IV PhD.)
-  end
-  def self.getprefixes
-    @prefixes = %w(M. Mrs. Mr. Dr. Ms. Sister Lady Miss)
   end
 end
